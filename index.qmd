@@ -1,2 +1,5 @@
 # PhD-standardization-variability
 PhD project online resources
+
+
+[first example: PCA](pca_example.html)
