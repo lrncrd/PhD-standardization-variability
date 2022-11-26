@@ -2,4 +2,9 @@
 PhD project online resources
 
 
-[first example: PCA](pca_example.html)
+Welcome to the supplementary materials of my PhD!
+ 
+The site is under construction, there is only a small example that I made exclusively to understand how GitHub Pages and Quarto work.
+
+## Methods
+- [first example: PCA](pca_example.html)

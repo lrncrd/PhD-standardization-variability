@@ -135,13 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="instance-potds-class" class="level3">
 <h3 class="anchored" data-anchor-id="instance-potds-class">Instance potds class</h3>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>potds <span class="op">=</span> PotDataset(<span class="vs">r"C:\Users\larth\Documents\aippa\examples\pots_data"</span>, <span class="vs">r"C:\Users\larth\Documents\aippa\Exporting_query_eng.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="select-data-pianello-di-genga-necropolis" class="level5">
 <h5 class="anchored" data-anchor-id="select-data-pianello-di-genga-necropolis">Select data: Pianello di Genga Necropolis</h5>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>info_selected <span class="op">=</span> potds.info[(potds.info.context <span class="op">==</span> <span class="st">"Pianello di Genga"</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>info_selected <span class="op">=</span> potds.info[(potds.info.context <span class="op">==</span> <span class="st">"Pianello di Genga"</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -149,7 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="features-extraction">Features extraction</h3>
 <p>Due to the use of PCA, Vectorization is used</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> Vectorization(potds[info_selected.index])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> Vectorization(potds[info_selected.index])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Extracting vector: 100%|██████████| 250/250 [00:00&lt;00:00, 250137.40it/s]</code></pre>
 </div>
@@ -159,7 +156,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="performs-pca">Performs PCA</h3>
 <p>PCA is performed, 5 components are chosen so that the amount of variance explained can be displayed cumulatively. The <code>verbosity</code> parameter allows some information about the principal components to be displayed, such as the size of the output and the explained variance.</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PrincipalComponentAnalysis(vector, info_selected <span class="op">=</span> info_selected, n_components<span class="op">=</span><span class="dv">5</span>, verbosity<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PrincipalComponentAnalysis(vector, info_selected <span class="op">=</span> info_selected, n_components<span class="op">=</span><span class="dv">5</span>, verbosity<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Original dimension: (250, 65536)
 Output dimension: (250, 5)
@@ -167,27 +164,27 @@ First 5 components variance: [0.20065555 0.10966728 0.05086821 0.04733037 0.0385
 </div>
 </div>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pca.Explained_variance_cumulative_plot(savefig<span class="op">=</span><span class="va">False</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pca.Explained_variance_cumulative_plot(savefig<span class="op">=</span><span class="va">False</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="pca_example_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pca.Explained_variance_plot(savefig<span class="op">=</span><span class="va">False</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pca.Explained_variance_plot(savefig<span class="op">=</span><span class="va">False</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="pca_example_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The first two principal components were chosen for visualisation, as they explain most of the variance. This two-dimensional representation makes it possible to appreciate the global structure of the context, which is characterised predominantly by the presence of two groups.</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pca.ScatterPlot(savefig<span class="op">=</span><span class="va">False</span>, legend_outside <span class="op">=</span> <span class="va">False</span>, hue <span class="op">=</span> info_selected.Functional_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pca.ScatterPlot(savefig<span class="op">=</span><span class="va">False</span>, legend_outside <span class="op">=</span> <span class="va">False</span>, hue <span class="op">=</span> info_selected.Functional_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="pca_example_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>it is possible to explore the global structure of the context through the interactive scatterplot</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ScatterImage(pca.reduction, info_selected, potds, output<span class="op">=</span><span class="st">"notebook"</span>, hue<span class="op">=</span>info_selected.Functional_class, hover_data<span class="op">=</span>[<span class="st">"Functional_class"</span>, <span class="st">"funeral_function"</span>,<span class="st">"wide_chronology"</span>, <span class="st">"Morphology"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ScatterImage(pca.reduction, info_selected, potds, output<span class="op">=</span><span class="st">"notebook"</span>, hue<span class="op">=</span>info_selected.Functional_class, hover_data<span class="op">=</span>[<span class="st">"Functional_class"</span>, <span class="st">"funeral_function"</span>,<span class="st">"wide_chronology"</span>, <span class="st">"Morphology"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
     <div class="bk-root">
@@ -531,7 +528,7 @@ First 5 components variance: [0.20065555 0.10966728 0.05086821 0.04733037 0.0385
 </div>
 </div>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pca.PlotEigenPots(savefig<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pca.PlotEigenPots(savefig<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="pca_example_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
