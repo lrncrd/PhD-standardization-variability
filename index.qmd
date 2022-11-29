@@ -27,5 +27,8 @@ Welcome to the supplementary materials of my PhD!
  
 The site is under construction, there is only a small example that I made exclusively to understand how GitHub Pages and Quarto work.
 
+## The dataset
+- [Geographic distribution of the contexts](geo.html)
+
 ## Methods
 - [first example: PCA](pca_example.html)
