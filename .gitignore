@@ -1,3 +1,6 @@
 data_raw
 
 *.ipynb
+.Rproj.user
+
+/.quarto/

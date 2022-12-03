@@ -1,0 +1,29 @@
+project:
+  type: website
+
+website:
+  sidebar:
+    style: "docked"
+    search: false
+    contents:
+      - title: "Home"
+        url: "index.qmd"
+      - section: "Dataset"
+        contents:
+        - text: "Geographic distribution"
+          file: "geo.ipynb"
+      - section: "Methods"
+        contents:
+        - text: "Principal Component Analysis"
+          file: "pca_example.ipynb"
+
+
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

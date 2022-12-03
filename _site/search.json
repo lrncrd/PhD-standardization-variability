@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "PhD project online resources\nWelcome to the supplementary materials of my PhD!\nThe site is under construction, there is only a small example that I made exclusively to understand how GitHub Pages and Quarto work.\n\n\n\nGeographic distribution of the contexts\n\n\n\n\n\nfirst example: PCA"
+  },
+  {
+    "objectID": "geo.html",
+    "href": "geo.html",
+    "title": "",
+    "section": "",
+    "text": "Context interactive visualization"
+  },
+  {
+    "objectID": "pca_example.html",
+    "href": "pca_example.html",
+    "title": "Principal Component Analysis: an example",
+    "section": "",
+    "text": "Importing libreries\n\nfrom aippa.utils import PotDataset\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport numpy as np\nimport pandas as pd\nfrom aippa.descriptors import Vectorization\nfrom aippa.DimensionReduction import PrincipalComponentAnalysis, LDA\nfrom aippa.visualization import ScatterImage\n\n\n\nInstance potds class\n\nSelect data: Pianello di Genga Necropolis\n\ninfo_selected = potds.info[(potds.info.context == \"Pianello di Genga\")] \n\n\n\n\nFeatures extraction\nDue to the use of PCA, Vectorization is used\n\nvector = Vectorization(potds[info_selected.index])\n\nExtracting vector: 100%|██████████| 250/250 [00:00<?, ?it/s]\n\n\n\n\nPerforms PCA\nPCA is performed, 5 components are chosen so that the amount of variance explained can be displayed cumulatively. The verbosity parameter allows some information about the principal components to be displayed, such as the size of the output and the explained variance.\n\npca = PrincipalComponentAnalysis(vector, info_selected = info_selected, n_components=5, verbosity=True)\n\nOriginal dimension: (250, 65536)\nOutput dimension: (250, 5)\nFirst 5 components variance: [0.20065555 0.10966728 0.05086821 0.04733037 0.03852975]\n\n\n\npca.Explained_variance_cumulative_plot(savefig=False, figsize=(10,5))\n\n\n\n\n\npca.Explained_variance_plot(savefig=False, figsize=(10,5))\n\n\n\n\nThe first two principal components were chosen for visualisation, as they explain most of the variance. This two-dimensional representation makes it possible to appreciate the global structure of the context, which is characterised predominantly by the presence of two groups.\n\npca.ScatterPlot(savefig=False, legend_outside = False, hue = info_selected.Functional_class)\n\n\n\n\nit is possible to explore the global structure of the context through the interactive scatterplot\n\nScatterImage(pca.reduction, info_selected, potds, output=\"notebook\", hue=info_selected.Functional_class, hover_data=[\"Functional_class\", \"funeral_function\",\"wide_chronology\", \"Morphology\"])\n\n\n    \n        \n        Loading BokehJS ...\n    \n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\npca.PlotEigenPots(savefig=True)"
+  }
+]
